@@ -1,5 +1,5 @@
 # Grafana Slack Auto Report
-this is the crawler mimic a mobile browser to **get screenshots in <https://grafana.com/> then send to slack** <br />
+this is the crawler mimic a mobile browser to **get screenshots in Grafana Dashboard then send to slack** <br />
 
 # Why should I use this?
 Of course You can use Grafana Reporting Tools with powerful functions, which cost ranges from **$99/mo to $3,500/mo** <br />
@@ -8,12 +8,12 @@ I only need **simple screenshots and auto report to slack daily**, so I make thi
 ## how to create a slack webhook
 please see <https://api.slack.com/methods/files.upload> to get more details <br />
 find your slack app in <https://api.slack.com/apps> <br />
-add incoming-webhook <br / >
-add incoming-webhook and files:write in app scopes <br / >
-install app to slack workspace <br / >
-find slack channel ID in channel details <br / >
-write Bot OAuth Token and channel ID in conf.ini <br / >
-invite bot to channel <br / >
+add incoming-webhook <br />
+add incoming-webhook and files:write in app scopes <br />
+install app to slack workspace <br />
+find slack channel ID in channel details <br />
+write Bot OAuth Token and channel ID in conf.ini <br />
+invite bot to channel <br />
 
 ## how to use
 python: 3.8 <br />
