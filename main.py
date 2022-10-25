@@ -10,6 +10,7 @@ from Screenshot import Screenshot
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
+# in ubuntu is /usr/bin/chromedriver
 BROWSER_DRIVER_PATH = "/usr/local/bin/chromedriver"
 
 cf = configparser.ConfigParser()
