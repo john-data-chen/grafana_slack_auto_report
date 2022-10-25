@@ -1,9 +1,9 @@
 # Grafana Slack Auto Report
 this is the crawler mimic a mobile browser to **get screenshots in Grafana Dashboard then send to slack** <br />
 
-# Why should I use this?
-Of course You can use Grafana Reporting Tools with powerful functions, which cost ranges from **$99/mo to $3,500/mo** <br />
-I only need **simple screenshots and auto report to slack daily**, so I make this repo. You can use mine freely, if you like or clone it, **give me a star**, thanks! <br />
+# Why should we use this?
+Grafana Reporting Tools with powerful functions, which cost ranges from **$99/mo to $3,500/mo** <br />
+we only need **simple screenshots and auto report to slack daily** <br />
 
 ## how to create a slack webhook
 please see <https://api.slack.com/methods/files.upload> to get more details <br />
@@ -37,3 +37,7 @@ password=optional
 channel=channel ID
 token=token of you slack app
 ```
+
+## crontab
+send screenshots to slack AM 09:30 everyday <br />
+30 9 * * * cd /home/john_chen/crawler_daily_jobs && /home/john_chen/crawler_daily_jobs/venv/bin/python /home/john_chen/crawler_daily_jobs/main.py >/dev/null 2>&1 <br />
