@@ -37,6 +37,3 @@ password=optional
 channel=channel ID
 token=token of you slack app
 ```
-
-## Limits
-only be able to send to public slack channel <br />
