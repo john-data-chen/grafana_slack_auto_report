@@ -11,6 +11,7 @@ from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
 # in ubuntu is /usr/bin/chromedriver
+# in mac is /usr/local/bin/chromedriver
 BROWSER_DRIVER_PATH = "/usr/local/bin/chromedriver"
 
 cf = configparser.ConfigParser()
@@ -138,4 +139,4 @@ if __name__ == "__main__":
 
     for i in range(0, len(msgs)):
         sendToSlack(str(i + 1) + '.png', msgs[i])
-        time.sleep(2)
+        time.sleep(4)
