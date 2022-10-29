@@ -4,15 +4,13 @@ import time
 import configparser
 from PIL import Image
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
 from Screenshot import Screenshot
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
-# in ubuntu is /usr/bin/chromedriver
-# in mac is /usr/local/bin/chromedriver
-BROWSER_DRIVER_PATH = "/usr/local/bin/chromedriver"
+BROWSER_DRIVER_PATH = "/usr/local/bin/geckodriver"
 
 cf = configparser.ConfigParser()
 cf.read(os.getcwd() + "/conf.ini")
@@ -56,19 +54,22 @@ def sendToSlack(filepath, msg):
 
 def browser(url):
     browser_options = Options()
-    browser_options.add_argument(
-        '--headless')  # enable headless mode in linux without GUI
+    # browser_options.add_argument('--headless')  # enable headless mode in linux without GUI
     browser_options.add_argument("--disable-notifications")
     browser_options.add_argument('--disable-gpu')
     browser_options.add_argument('--no-sandbox')
     browser_options.add_argument('--start-maximized')
     browser_options.add_argument('--start-fullscreen')
 
-    driver = webdriver.Chrome(executable_path=BROWSER_DRIVER_PATH,
-                              options=browser_options)
+    # you can set a port such as add port = 240000
+    service = webdriver.firefox.service.Service('geckodriver')
+
+    driver = webdriver.Firefox(executable_path=BROWSER_DRIVER_PATH,
+                               service=service,
+                               options=browser_options)
     driver.set_window_size(1920, 1080)
     driver.get(url)
-    time.sleep(5)
+    time.sleep(10)
 
     # no need to login
     if len(user) == 0:
@@ -108,6 +109,7 @@ def browser(url):
             )
             login.click()
 
+            time.sleep(20)
             screenshot('1', driver)
             body = driver.find_element("xpath", value='/html/body')
             body.click()
@@ -139,4 +141,4 @@ if __name__ == "__main__":
 
     for i in range(0, len(msgs)):
         sendToSlack(str(i + 1) + '.png', msgs[i])
-        time.sleep(4)
+        time.sleep(8)

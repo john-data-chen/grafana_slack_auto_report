@@ -19,7 +19,7 @@ invite bot to channel <br />
 python: 3.8 <br />
 default OS = ubuntu 20.04 LTS, you can use other Linux, if you know how to use its commands <br />
 `sudo apt install python3-venv` <br />
-need install google-chrome and chromedriver <https://skolo.online/documents/webscrapping/#step-1-download-chrome> <br />
+need install firefox and download geckodriver into BROWSER_DRIVER_PATH=/usr/local/bin/ <https://github.com/mozilla/geckodriver/releases> <br />
 `python3 -m venv ./venv` <br />
 `source ./venv/bin/activate` <br />
 `pip install -r requirements.txt` <br />
