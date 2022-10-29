@@ -43,6 +43,9 @@ def scrollDown(body, times):
 
 
 def sendToSlack(filepath, msg):
+    # if using a HTTPS proxy
+    # proxyInfo = 'http://127.0.0.1:24000'
+    # client = WebClient(token, timeout=300, proxy=proxyInfo)
     client = WebClient(token, timeout=300)
     try:
         response = client.files_upload_v2(channel=channelId,
@@ -68,7 +71,7 @@ def browser(url):
                               options=browser_options)
     driver.set_window_size(1920, 1080)
     driver.get(url)
-    time.sleep(5)
+    time.sleep(10)
 
     # no need to login
     if len(user) == 0:
@@ -107,7 +110,7 @@ def browser(url):
                 '//*[@id="reactRoot"]/div[1]/main/div[3]/div/div[2]/div/div/form/button'
             )
             login.click()
-
+            time.sleep(30)
             screenshot('1', driver)
             body = driver.find_element("xpath", value='/html/body')
             body.click()
@@ -139,4 +142,4 @@ if __name__ == "__main__":
 
     for i in range(0, len(msgs)):
         sendToSlack(str(i + 1) + '.png', msgs[i])
-        time.sleep(4)
+        time.sleep(8)
