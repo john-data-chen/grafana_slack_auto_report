@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import platform
 import configparser
 from PIL import Image
 from selenium import webdriver
@@ -10,8 +11,11 @@ from Screenshot import Screenshot
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
-# in ubuntu is /usr/bin/chromedriver
-# in mac is /usr/local/bin/chromedriver
+if platform.system() == 'Darwin':
+    crop = (150, 290, 1850, 950)
+else:
+    crop = (70, 150, 950, 500)
+
 BROWSER_DRIVER_PATH = "/usr/local/bin/chromedriver"
 
 cf = configparser.ConfigParser()
@@ -28,7 +32,7 @@ def screenshot(fileName, driver):
     ob.full_Screenshot(driver, save_path=r'.', image_name='screenshot.png')
     with Image.open("screenshot.png") as im:
         # change numbers to get the area you want to crop
-        (left, upper, right, lower) = (150, 290, 1850, 950)
+        (left, upper, right, lower) = crop
         im_crop = im.crop((left, upper, right, lower))
         im_crop.save(fileName + ".png", "png")
         print("screenshot: " + fileName + ".png")

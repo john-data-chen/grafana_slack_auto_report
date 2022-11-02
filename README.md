@@ -15,6 +15,11 @@ find slack channel ID in channel details <br />
 write Bot OAuth Token and channel ID in conf.ini <br />
 invite bot to channel <br />
 
+## based on platform to change crop sizes
+crop sizes are determined by : platform.system() <br />
+if it is Darwin, meaning you use a mac <br />
+if it is Linux, meaning you use a Linux <br />
+
 ## how to use
 python: 3.8 <br />
 default OS = ubuntu 20.04 LTS, you can use other Linux, if you know how to use its commands <br />
