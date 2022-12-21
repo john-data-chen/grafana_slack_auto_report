@@ -5,8 +5,8 @@ import platform
 import configparser
 from PIL import Image
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
+from webdriver_manager.chrome import ChromeDriverManager
 from Screenshot import Screenshot
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
@@ -15,8 +15,6 @@ if platform.system() == 'Darwin':
     crop = (150, 290, 1850, 950)
 else:
     crop = (70, 150, 950, 500)
-
-BROWSER_DRIVER_PATH = "/usr/local/bin/chromedriver"
 
 cf = configparser.ConfigParser()
 cf.read(os.getcwd() + "/conf.ini")
@@ -62,17 +60,16 @@ def sendToSlack(filepath, msg):
 
 
 def browser(url):
-    browser_options = Options()
-    browser_options.add_argument(
-        '--headless')  # enable headless mode in linux without GUI
+    browser_options = webdriver.ChromeOptions()
+    # enable headless mode in linux without GUI
+    browser_options.add_argument('--headless')
     browser_options.add_argument("--disable-notifications")
     browser_options.add_argument('--disable-gpu')
     browser_options.add_argument('--no-sandbox')
     browser_options.add_argument('--start-maximized')
-    browser_options.add_argument('--start-fullscreen')
-
-    driver = webdriver.Chrome(executable_path=BROWSER_DRIVER_PATH,
-                              options=browser_options)
+    prefs = {"profile.default_content_setting_values.notifications": 2}
+    browser_options.add_experimental_option("prefs", prefs)
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=browser_options)
     driver.set_window_size(1920, 1080)
     driver.get(url)
     time.sleep(10)

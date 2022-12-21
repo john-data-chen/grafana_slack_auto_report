@@ -24,7 +24,7 @@ if it is Linux, meaning you use a Linux <br />
 python: 3.8 <br />
 default OS = ubuntu 20.04 LTS, you can use other Linux, if you know how to use its commands <br />
 `sudo apt install python3-venv` <br />
-need install google-chrome and chromedriver <https://skolo.online/documents/webscrapping/#step-1-download-chrome> <br />
+need to install google-chrome, chromedriver is not needed because of webdriver-manager installed <https://skolo.online/documents/webscrapping/#step-1-download-chrome> <br />
 `python3 -m venv ./venv` <br />
 `source ./venv/bin/activate` <br />
 `pip install -r requirements.txt` <br />
@@ -46,3 +46,6 @@ token=token of you slack app
 ## crontab
 send screenshots to slack AM 09:30 everyday <br />
 30 9 * * * cd /home/john_chen/crawler_daily_jobs && /home/john_chen/crawler_daily_jobs/venv/bin/python /home/john_chen/crawler_daily_jobs/main.py >/dev/null 2>&1 <br />
+
+## how to fix chrome didn't show characters correctly
+sudo apt-get install fonts-noto-cjk <br />
